@@ -62,7 +62,9 @@ appbase.searchStream({
   else
   {
     console.log("New user");
+    document.getElementById('cont').innerHTML = response._source.country;
     $('.error').fadeIn(400).delay(3000).fadeOut(400);
+
     console.log(response._source);
      var time = response._source.h+":"+response._source.m+":"+response._source.s;
       var log = "<p>New User arrived: </p><p> Time: "+time+" </p><p> Country:"+response._source.country+" </p><p> longitude:"+response._source.longitude+" </p><p> Latitude:" +response._source.latitude+"</p><p> ISP :"+response._source.isp+" </p>---------------------------------------------------";
@@ -88,6 +90,7 @@ $.ajax({
 });
 function handleData(data)
 {
+  document.getElementById('cont').innerHTML = data.country;
   $('.error').fadeIn(400).delay(3000).fadeOut(400);
   jsonObject.latitude=data.latitude;
   jsonObject.longitude=data.longitude;
