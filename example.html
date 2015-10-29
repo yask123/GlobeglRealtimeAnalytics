@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en_US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Realtime WebGL Globe Example</title>
+    <meta name="description" content="A webgl earth making it easy to add shapes at coordinates in realtime.">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="bower_components/appbase-js/browser/appbase.js"></script>
+
+    <style>
+    .error {
+      width:200px;
+      height:20px;
+      height:auto;
+      position:absolute;
+      left:50%;
+      margin-left:-100px;
+      bottom:10px;
+      background-color: #383838;
+      color: #F0F0F0;
+      font-family: Calibri;
+      font-size: 20px;
+      padding:10px;
+      text-align:center;
+      border-radius: 2px;
+      -webkit-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+      -moz-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+      box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    }
+
+      body {
+        padding: 0;
+        margin: 0;
+        background: black;
+      }
+
+    </style>
+  </head>
+  <body>
+    <main>
+      <div id='globe'></div>
+      <div class='error' style='display:none'>New user logged in From <span id="cont"></span> </div>
+      <h2 style="position:absolute;color:white"> Current user info</h2>
+      <br>
+      <div id="current" style="position:absolute;color:white;margin-top: 40px;"> 
+      <h2 style="position:absolute;color:white">Logs</h2>
+      <div id="logs" style="position:absolute;color:white;margin-top: 48px;"> 
+      <p> Loading.. </p>
+      </div>
+    </main>
+      
+    </script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/three.js/r70/three.min.js'></script>
+    <script src='globe.js'></script>
+    <script type="text/javascript" src="app.js"></script>
+
+    <script>
+      
+    </script>
+  </body>
+</html>
