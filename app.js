@@ -59,7 +59,8 @@ appbase.searchStream({
   }
   else
   {
-    document.getElementById('count').innerHTML = document.getElementById('count') +1;
+    
+    $('#count').text(parseInt($('#count').html())+1);
     console.log("New user");
     document.getElementById('cont').innerHTML = response._source.country;
     $('.error').fadeIn(400).delay(3000).fadeOut(400);
