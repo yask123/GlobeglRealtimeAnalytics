@@ -26,7 +26,8 @@ var jsonObject = {
   "isp":0,
   "h":0,
   "m":0,
-  "s":0
+  "s":0,
+  "browser":0
 }
 appbase.searchStream({
   type: 'people71',
@@ -41,12 +42,9 @@ appbase.searchStream({
   if (response.hits){
     console.log(response.hits.hits.length);
     var l = response.hits.hits.length;
-
+    document.getElementById('count').innerHTML = response.hits.hits.length +1;
     for(var i=0;i<l;i++)
     {
-      var time = response.hits.hits[i]._source.h+":"+response.hits.hits[i]._source.m+":"+response.hits.hits[i]._source.s;
-      var log = "<p>New User arrived: </p><p> Time: "+time+" </p><p> Country:"+response.hits.hits[i]._source.country+" </p><p> longitude:"+response.hits.hits[i]._source.longitude+" </p><p> Latitude:" +response.hits.hits[i]._source.latitude+"</p><p> ISP :"+response.hits.hits[i]._source.isp+" </p>---------------------------------------------------";
-      $('#logs').prepend(log); 
       var data = {
         color: '#2962FF',
         lat: response.hits.hits[i]._source.latitude,
@@ -61,13 +59,14 @@ appbase.searchStream({
   }
   else
   {
+    document.getElementById('count').innerHTML = document.getElementById('count') +1;
     console.log("New user");
     document.getElementById('cont').innerHTML = response._source.country;
     $('.error').fadeIn(400).delay(3000).fadeOut(400);
 
     console.log(response._source);
      var time = response._source.h+":"+response._source.m+":"+response._source.s;
-      var log = "<p>New User arrived: </p><p> Time: "+time+" </p><p> Country:"+response._source.country+" </p><p> longitude:"+response._source.longitude+" </p><p> Latitude:" +response._source.latitude+"</p><p> ISP :"+response._source.isp+" </p>---------------------------------------------------";
+      var log = "<p>New User arrived: </p><p> Time: "+time+" </p><p> Country:"+response._source.country+" </p><p> ISP :"+response._source.isp+" </p><p> Browser : "+response._source.browser+" </p>---------------------------------------------------";
       $('#logs').prepend(log); 
     var data = {
             color: '#2962FF',
@@ -96,14 +95,14 @@ function handleData(data)
   jsonObject.longitude=data.longitude;
   jsonObject.country=data.country;
   jsonObject.isp=data.isp;
-
+  jsonObject.browser=navigator.appName;
   var d = new Date(); // for now
   jsonObject.h =  d.getHours(); // => 9
   jsonObject.m =  d.getMinutes(); // =>  30
   jsonObject.s =  d.getSeconds(); // => 51
 
   var time = jsonObject.h+":"+jsonObject.m+":"+jsonObject.s;
-  var log = "<p> Time: "+time+" </p><p> Country:"+jsonObject.country+" </p><p> longitude:"+jsonObject.longitude+" </p><p> Latitude:" +jsonObject.latitude+"</p><p> ISP :"+jsonObject.isp+" </p>---------------------------------------------------";
+  var log = "<p> Time: "+time+" </p><p> Country:"+jsonObject.country+" </p><p> ISP :"+jsonObject.isp+" </p>---------------------------------------------------";
   $('#current').prepend(log); 
 
   appbase.index({
