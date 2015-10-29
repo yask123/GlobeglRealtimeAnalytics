@@ -174,8 +174,8 @@ var Globe = function(container, urls) {
 
     block: function(color) {
       return new THREE.Mesh(
-        new THREE.BoxGeometry(0.5, 0.5, 20),
-        new THREE.MeshLambertMaterial({color: color})
+        new THREE.BoxGeometry(0.5, 0.5, 10),
+        new THREE.MeshNormalMaterial()
       );
     }
 
