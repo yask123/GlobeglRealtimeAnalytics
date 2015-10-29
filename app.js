@@ -51,7 +51,7 @@ appbase.searchStream({
         color: '#2962FF',
         lat: response.hits.hits[i]._source.latitude,
         lon: response.hits.hits[i]._source.longitude,
-        size: 2
+        size: 5
       };
       globe.addLevitatingBlock(data);
     }
@@ -74,7 +74,7 @@ appbase.searchStream({
             size: Math.random() * 100,
             lat: parseInt(response._source.latitude),
             lon: parseInt(response._source.longitude),
-            size: 2
+            size: 5
           };
     globe.addLevitatingBlock(data);
     globe.center(data);
