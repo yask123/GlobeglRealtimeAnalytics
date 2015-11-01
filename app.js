@@ -64,10 +64,11 @@ appbase.searchStream({
     console.log("New user");
     document.getElementById('cont').innerHTML = response._source.country;
     $('.error').fadeIn(400).delay(3000).fadeOut(400);
-
+    //- response._source.h
     console.log(response._source);
-     var time = response._source.h+":"+response._source.m+":"+response._source.s;
-      var log = "<p>New User arrived: </p><p> Time: "+time+" </p><p> Country:"+response._source.country+" </p><p> ISP :"+response._source.isp+" </p><p> Browser : "+response._source.browser+" </p>---------------------------------------------------";
+    var diff = (new Date().getTime() - response._source.h)/1000;
+
+      var log = "<p>New User arrived: "+diff+" seconds ago </p><p> Country:"+response._source.country+" </p><p> ISP :"+response._source.isp+" </p><p> Browser : "+response._source.browser+" </p>---------------------------------------------------";
       $('#logs').prepend(log); 
     var data = {
             color: '#2962FF',
@@ -97,13 +98,11 @@ function handleData(data)
   jsonObject.country=data.country;
   jsonObject.isp=data.isp;
   jsonObject.browser=navigator.appName;
-  var d = new Date(); // for now
-  jsonObject.h =  d.getHours(); // => 9
-  jsonObject.m =  d.getMinutes(); // =>  30
-  jsonObject.s =  d.getSeconds(); // => 51
+  
+  jsonObject.h = new Date().getTime();
 
-  var time = jsonObject.h+":"+jsonObject.m+":"+jsonObject.s;
-  var log = "<p> Time: "+time+" </p><p> Country:"+jsonObject.country+" </p><p> ISP :"+jsonObject.isp+" </p>---------------------------------------------------";
+
+  var log = "<p> Country:"+jsonObject.country+" </p><p> ISP :"+jsonObject.isp+" </p>---------------------------------------------------";
   $('#current').prepend(log); 
 
   appbase.index({
